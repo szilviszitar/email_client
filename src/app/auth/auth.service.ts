@@ -33,7 +33,7 @@ export class AuthService {
   }
   signup(credentials: SignupCredentials) {
     return this.http
-      .post<SignupResponse>('https://api.angular-email.com/auth/signup', credentials,{withCredentials:true})
+      .post<SignupResponse>('https://api.angular-email.com/auth/signup', credentials,)
       .pipe(
         tap(() => {
           this.signedin$.next(true)
@@ -43,7 +43,7 @@ export class AuthService {
 
   checkAuth() {
     return this.http
-      .get('https://api.angular-email.com/auth/signedin',{withCredentials:true})
+      .get('https://api.angular-email.com/auth/signedin',)
       .pipe(
         tap(response => {
           console.log(response);
