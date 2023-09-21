@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from "@angular/common/http";
-import { Observable, tap } from "rxjs";
+import { Observable  } from "rxjs";
 
 
 
@@ -17,11 +17,6 @@ export class AuthHttpInterceptor implements HttpInterceptor {
         })
 
         return next.handle(modifiedReq)
-            .pipe(
-                tap(val => {
-                    console.log(val);
-
-                })
-            )
+            
     }
 }

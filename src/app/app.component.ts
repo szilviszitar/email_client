@@ -18,8 +18,8 @@ export class AppComponent {
 
     })
 
-    this.authService.checkAuth().subscribe(()=>{
-      
-    });
+    this.authService.checkAuth().subscribe(() => { });
+
+    
   }
 }
