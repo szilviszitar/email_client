@@ -18,6 +18,10 @@ interface SignedinResponse {
   authenticated: boolean;
   username: string;
 }
+export interface SigninCredentials {
+  username: string;
+  password: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -58,13 +62,23 @@ export class AuthService {
 
   signout() {
     return this.http
-      .post('https://api.angular-email.com/auth/signout',{})
+      .post('https://api.angular-email.com/auth/signout', {})
       .pipe(
-        tap(()=>{
+        tap(() => {
           this.signedin$.next(false);
 
         })
       );
+  }
+
+  signin(credentials: SigninCredentials) {
+    return this.http
+      .post('https://api.angular-email.com/auth/signin', credentials)
+      .pipe(
+        tap(() =>{
+          this.signedin$.next(true)
+        })
+      )
   }
 }
 
