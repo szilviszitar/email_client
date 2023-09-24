@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { SigninCredentials, AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -22,11 +23,26 @@ export class SigninComponent {
       Validators.maxLength(20),
     ])
   })
-  constructor(private authservice:AuthService){}
+  constructor(
+    private authservice: AuthService,
+    private router: Router
+  ) { }
   onSubmit() {
     if (this.authForm.invalid) {
       return;
     }
+
+    this.authservice.signin(this.authForm.value as SigninCredentials)
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/inbox');
+        }, error: ({ error }) => {
+          if (error.username || error.password) {
+            this.authForm.setErrors({ credentials: true })
+          }
+
+        }
+      })
 
   }
 }
