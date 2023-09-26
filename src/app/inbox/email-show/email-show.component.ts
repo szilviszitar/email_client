@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Email } from '../email';
+
+
 
 @Component({
   selector: 'app-email-show',
@@ -6,5 +10,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./email-show.component.css']
 })
 export class EmailShowComponent {
+  email!: Email;
+  constructor(
+    private route: ActivatedRoute) {
+    this.route.data.subscribe(({ email }) => {
+      this.email = email;
+      
+
+
+    })
+
+  }
+
+  
 
 }
