@@ -1,0 +1,23 @@
+<form class="ui form" [formGroup]="emailform">
+  <app-input
+    [control]="$any(emailform.get('to'))"
+    label="To"
+    inputType="email"
+  ></app-input>
+  <app-input
+    [control]="$any(emailform.get('from'))"
+    label="From"
+    inputType="email"
+  ></app-input>
+  <app-input
+    [control]="$any(emailform.get('subject'))"
+    label="Subject"
+    inputType="text"
+  ></app-input>
+  <app-input
+    controlType="textarea"
+    [control]="$any(emailform.get('text'))"
+    label="Content"
+  ></app-input>
+  <button class="ui button primary">Send</button>
+</form>
